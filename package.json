@@ -1,0 +1,21 @@
+{
+  "name": "x402_cmc_testing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "sign": "tsx sign.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.4.1",
+    "viem": "^2.47.10"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}
