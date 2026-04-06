@@ -50,7 +50,14 @@ Signed an EIP-712 `TransferWithAuthorization` using the payment requirements abo
 
 The signed payload was base64-encoded and sent as the `PAYMENT-SIGNATURE` header on retry.
 
-> **Transaction hash:** Not returned by CMC in this response. The facilitator submits the on-chain `transferWithAuthorization` call asynchronously after verifying the signature.
+**Unique identifier — Authorization Nonce**
+
+Rather than a transaction hash, this payment is uniquely identified by its **nonce**: a random 32-byte hex value included in the signed EIP-712 message. The nonce serves two purposes:
+
+1. **Uniqueness** — it makes every authorization distinct, even if the same wallet pays the same amount to the same address twice.
+2. **Replay protection** — when the facilitator submits the `transferWithAuthorization` call on-chain, the USDC contract records `authorizationState[from][nonce] = true`. Any attempt to reuse the same signature is rejected by the contract.
+
+The combination of **`from` address + `nonce`** is the on-chain fingerprint for this specific payment — equivalent in function to a transaction hash for identifying it.
 
 ---
 

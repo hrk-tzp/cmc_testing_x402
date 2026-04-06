@@ -113,6 +113,7 @@ async function sign(paymentRequired: { x402Version: number; accepts: any[]; reso
 
   const encoded = Buffer.from(JSON.stringify(paymentPayload)).toString("base64");
   console.log("Signature:", signature);
+  console.log("Nonce:", nonce);
   return encoded;
 }
 
